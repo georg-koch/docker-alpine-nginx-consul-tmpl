@@ -1,0 +1,18 @@
+upstream foo {
+  least_conn;
+  {{range service "service-foo"}}server {{.Address}}:{{.Port}} {{range tree "upstream-config@dc1"}} {{.Key}}={{.Value}} {{end}};
+    {{else}}server 127.0.0.1:65535; # return 502
+  {{end}}
+}
+
+server {
+	listen 80;
+	server_name _;
+
+	location / {
+		proxy_pass http://foo;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+	}
+}

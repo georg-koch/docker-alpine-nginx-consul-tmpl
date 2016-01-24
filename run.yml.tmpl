@@ -1,0 +1,44 @@
+consul:
+  image: gliderlabs/consul-server:0.6
+  ports:
+    - "$BRIDGE_IP:53:8600"
+    - "$BRIDGE_IP:53:8600/udp"
+    - "$BRIDGE_IP:8500:8500"
+    - "$BRIDGE_IP:8600:8600"
+    - "$BRIDGE_IP:8600:8600/udp"
+    - "$PRIVATE_IP:8300:8300"
+    - "$PRIVATE_IP:8301:8301"
+    - "$PRIVATE_IP:8301:8301/udp"
+    - "$PRIVATE_IP:8302:8302"
+    - "$PRIVATE_IP:8302:8302/udp"
+    - "$PRIVATE_IP:8400:8400"
+    - "$PRIVATE_IP:8500:8500"
+  hostname: $HOST_NAME
+  environment:
+    - SERVICE_NAME=service-discovery
+    - SERVICE_8600_TAGS=DNS
+    - SERVICE_8500_TAGS=API
+    - SERVICE_8400_TAGS=RPC
+    - SERVICE_8302_TAGS=SerfWAN
+    - SERVICE_8301_TAGS=SerfLAN
+    - SERVICE_8300_TAGS=RPC
+    - GOMAXPROCS=2
+  command: -bootstrap -advertise $PRIVATE_IP
+
+registrator:
+  image: gliderlabs/registrator:v6
+  net: host
+  volumes:
+    - /var/run/docker.sock:/tmp/docker.sock
+  command: consul://$PRIVATE_IP:8500
+
+nginx:
+  image: codizz/nginx-consul-tmpl
+  net: host
+  ports:
+    - "80:80"
+    - "443:443"
+  environment:
+    - SERVICE_NAME=reverse-proxy
+    - SERVICE_TAGS=www,public
+    - CONSUL_URI=$PRIVATE_IP:8500
