@@ -1,11 +1,16 @@
+![Circle CI](https://img.shields.io/circleci/project/codizz/docker-alpine-nginx-consul-tmpl.svg)
 ![Docker Stars](https://img.shields.io/docker/stars/codizz/nginx-consul-tmpl.svg)
 ![Docker Pulls](https://img.shields.io/docker/pulls/codizz/nginx-consul-tmpl.svg)
 [![Image Size](https://img.shields.io/imagelayers/image-size/codizz/nginx-consul-tmpl/latest.svg)](https://imagelayers.io/?images=codizz/nginx-consul-tmpl:latest)
 [![Image Layers](https://img.shields.io/imagelayers/layers/codizz/nginx-consul-tmpl/latest.svg)](https://imagelayers.io/?images=codizz/nginx-consul-tmpl:latest)
 
-### docker-alpine-nginx-consul-tmpl
+### Supported tags
 
-The Docker image is based on [docker-alpine](https://github.com/gliderlabs/docker-alpine) v3.3 with installed `nginx` v1.8 and `consul template` v0.12.
+* [`latest`](https://github.com/codizz/docker-alpine-nginx-consul-tmpl/tree/master)([latest/Dockerfile](https://github.com/codizz/docker-alpine-nginx-consul-tmpl/tree/master/Dockerfile))
+* 
+### Project
+
+The Docker image is based on [docker-alpine](https://github.com/gliderlabs/docker-alpine) v3.3 with installed `nginx` v1.8.0-r3 and `consul template` v0.12.
 
 ### Usage
 
