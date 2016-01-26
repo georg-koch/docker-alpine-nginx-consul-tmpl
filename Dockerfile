@@ -1,4 +1,4 @@
-FROM codizz/nginx:1.8.0-r3
+FROM codizz/nginx
 MAINTAINER Georg Koch <dev@codizz.de>
 
 COPY consul-template-v0.12.0  /usr/local/bin/consul-template
