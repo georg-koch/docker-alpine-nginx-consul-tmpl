@@ -7,7 +7,7 @@
 ### Supported tags
 
 * [`latest`](https://github.com/codizz/docker-alpine-nginx-consul-tmpl/tree/master)([latest/Dockerfile](https://github.com/codizz/docker-alpine-nginx-consul-tmpl/tree/master/Dockerfile))
-* 
+
 ### Project
 
 The Docker image is based on [docker-alpine](https://github.com/gliderlabs/docker-alpine) v3.3 with installed `nginx` v1.8.0-r3 and `consul template` v0.12.
